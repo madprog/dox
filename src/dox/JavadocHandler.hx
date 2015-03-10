@@ -16,7 +16,7 @@ class JavadocHandler {
 	{
 		var tags = [];
 		// TODO: need to parse this better as haxe source might have this sort of meta
-		var ereg = ~/^@(param|default|exception|throws|deprecated|return|returns|since)\s+([^@]+)/gm;
+		var ereg = ~/^@(author|param|default|exception|throws|deprecated|return|returns|since)\s+([^@]+)/gm;
 
 		doc = ereg.map(doc, function(e){
 			var name = e.matched(1);
@@ -42,6 +42,7 @@ class JavadocHandler {
 		var infos:DocInfos = {doc:markdown.markdownToHtml(path, doc), throws:[], params:[], tags:tags};
 		for (tag in tags) switch (tag.name)
 		{
+			case 'author': infos.author = tag;
 			case 'param': infos.params.push(tag);
 			case 'exception', 'throws': infos.throws.push(tag);
 			case 'deprecated': infos.deprecated = tag;
@@ -67,6 +68,7 @@ class JavadocHandler {
 
 typedef DocInfos = {
 	doc:String,
+	?author:DocTag,
 	?returns:DocTag,
 	?deprecated:DocTag,
 	?since:DocTag,

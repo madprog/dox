@@ -4,6 +4,13 @@
     </div>
 ::end::
 
+::if info.author != null::
+    <p class="javadoc">Author:</p>
+    <div class="indent inline-content">
+        ::raw info.author.doc::
+    </div>
+::end::
+
 ::raw info.doc::
 
 ::if info.params.length > 0::

@@ -15,6 +15,13 @@
     ::end::
 ::end::
 
+::if info.author != null::
+    <p class="javadoc">Author:</p>
+    <div class="indent inline-content">
+        ::raw info.author.doc::
+    </div>
+::end::
+
 ::if info.returns != null::
     <p class="javadoc">Returns:</p>
     <div class="indent inline-content">
